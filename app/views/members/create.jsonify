@@ -1,0 +1,8 @@
+json.status "created"
+json.location url_for member_path(@member)
+json.registration url_for member_registers_path(@member)
+json.member do
+	json.id @member.id
+	json.name @member.name
+	json.card_num @member.card_num
+end

@@ -1,0 +1,20 @@
+<p>
+  <b>Name:</b>
+  <%= @member.name %>
+</p>
+
+<p>
+  <b>Card:</b>
+  <%= @member.card_num %>
+</p>
+
+<p>
+<% if @member.registered? %>
+  <b>Registered: <%= @member.reg_date %></b>
+</p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %> |
+<%= link_to 'Register', member_registers_path(@member) %>
