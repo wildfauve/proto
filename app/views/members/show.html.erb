@@ -1,20 +1,26 @@
-<p>
-  <b>Name:</b>
-  <%= @member.name %>
-</p>
+<div data-role="header">
+	<h1>Member Details</h1>
+</div>
 
-<p>
-  <b>Card:</b>
-  <%= @member.card_num %>
-</p>
+<div data-role="content">
+	<p>
+		<b>Name:</b>
+		<%= @member.name %>
+	</p>
 
-<p>
-<% if @member.registered? %>
-  <b>Registered: <%= @member.reg_date %></b>
+	<p>
+		<b>Card:</b>
+		<%= @member.card_num %>
+	</p>
+
+	<p>
+	<% if @member.registered? %>
+	<b>Registered: <%= @member.reg_date %></b>
 </p>
 <% end %>
 
+</div>
 
-<%= link_to 'Edit', edit_member_path(@member) %> |
-<%= link_to 'Back', members_path %> |
-<%= link_to 'Register', member_registers_path(@member) %>
+<%= link_to 'Edit', edit_member_path(@member), "data-role" => "button", "data-icon" => "gear" %>
+<%= link_to 'Back', members_path, "data-role" => "button", "data-icon" => "back" %>
+<%= link_to 'Register', member_registers_path(@member), "data-role" => "button", "data-icon" => "star"%>

@@ -1,3 +1,5 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+jQuery ->
+	memurl = $("a").attr("href")
+	name = $(".member").attr("id")
+	localStorage.setItem("name", name)
+	localStorage.setItem("memurl", memurl)

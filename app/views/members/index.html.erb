@@ -1,28 +1,28 @@
-<% title "Members" %>
-
-<h1>Listing members</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Card</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div data-role = "header" data-title="members">
+	<h1>Listing members</h1>
+</div>
+<div data-role = "content">
+<ul data-role  = "listview">
 <% @members.each do |member| %>
-  <tr>
-    <td><%= member.name %></td>
-    <td><%= member.card_num %></td>
-    <td><%= link_to 'Show', member %></td>
-    <td><%= link_to 'Edit', edit_member_path(member) %></td>
-    <td><%= link_to 'Destroy', member, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
 
+	<li data-role = "list-divider"><%= member.name %> </li>
+	<li>
+		<%= link_to member  do %>
+			<h3>Member Information</h3>
+			<p><%= member.card_num %></p>
+			<p><%= member.reg_date %></p>
+			<div data-role="controlgroup" data-type="horizontal">
+				<%= link_to 'Edit', edit_member_path(member), "data-role" => "button", "data-icon" => "gear" %>
+				<%= link_to 'Destroy', member, confirm: 'Are you sure?', method: :delete, "data-role" => "button", "data-icon" => "delete" %>
+			</div>
+			
+		<% end %>
+	</li>
+
+
+<% end %>
+</ul>
+</div>
 <br />
 
-<%= link_to 'New Member', new_member_path %> |
-<%= link_to 'Delete All', delete_all_members_path, confirm: 'Are you sure?', :method => :delete %>
+<%= link_to 'New Member', new_member_path, "data-role" => "button", "data-icon" => "plus" %>

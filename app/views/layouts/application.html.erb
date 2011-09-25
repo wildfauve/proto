@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><%= content_for?(:title) ? content_for(:title) : 'Board Prototype' %></title>
-    <%= yield(:head) %>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<%= stylesheet_link_tag    "application" %>
 	<%= javascript_include_tag "application" %>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.css" />
+	<script src="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.js"></script>
 	<%= csrf_meta_tag %>
 </head>
 <body>
-	<div id="content">
+	<div data-role="page">
 		<%- flash.each do |name, msg| -%>
 			<%= content_tag :div, msg, :id => "flash_#{name}" %>
 		<% end %>      
