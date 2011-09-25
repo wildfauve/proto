@@ -3,7 +3,7 @@
 </div>
 <div data-role="content">
 	<div id="<%=@member.name%>" class="member">
-		<%= link_to "Confirm", member_registers_path(@member), :method => :post, "data-role" => "button", "data-icon" => "check" %>
+		<%= link_to "Confirm", member_registers_path(@member), :method => :post, "data-role" => "button", "data-icon" => "check", :class => "register" %>
 		<%= link_to "Reject", member_register_path(@member, 1), :method => :delete, "data-role" => "button", "data-icon" => "delete"  if @member.registered %>
 	</div>
 </div>

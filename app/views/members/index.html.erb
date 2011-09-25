@@ -10,7 +10,11 @@
 		<%= link_to member  do %>
 			<h3>Member Information</h3>
 			<p><%= member.card_num %></p>
-			<p><%= member.reg_date %></p>
+			<p>
+			<% if member.registered? %>
+				<b>Registered: <%= member.reg_date %></b>
+			<% end %>
+			</p>
 			<div data-role="controlgroup" data-type="horizontal">
 				<%= link_to 'Edit', edit_member_path(member), "data-role" => "button", "data-icon" => "gear" %>
 				<%= link_to 'Destroy', member, confirm: 'Are you sure?', method: :delete, "data-role" => "button", "data-icon" => "delete" %>
