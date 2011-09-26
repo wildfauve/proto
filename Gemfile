@@ -17,6 +17,7 @@ group :assets do
 end
 
 gem 'jsonify-rails'
+gem 'bcrypt-ruby', :require => 'bcrypt'
 
 gem 'jquery-rails'
 
