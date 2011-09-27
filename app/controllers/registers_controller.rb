@@ -17,7 +17,7 @@ class RegistersController < ApplicationController
     @member = Member.find(params[:member_id])
     respond_with do |format|
       if @member.update_attributes(:registered => true, :reg_date => Time.now)
-        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
+        format.html { redirect_to member_register_path(@member.id, 1), notice: 'Member was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -27,6 +27,7 @@ class RegistersController < ApplicationController
   end
   
   def show
+    @member = Member.find(params[:member_id])
   end
   
   def new

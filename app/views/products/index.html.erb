@@ -1,0 +1,27 @@
+<% title "Offers" %>
+
+<div data-role = "content">
+	<ul data-role  = "listview">
+	<% @products.each do |product| %>
+
+		<li data-role = "list-divider"><%= product.name %> </li>
+		<li>
+			<%= link_to product  do %>
+				<h3>Offer Information</h3>
+				<p>Description: <%= product.desc %></p>
+				</p>
+				<div data-role="controlgroup" data-type="horizontal">
+					<%= link_to 'Edit', edit_product_path(product), "data-role" => "button", "data-icon" => "gear" %>
+					<%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete, "data-role" => "button", "data-icon" => "delete" %>
+				</div>
+			
+			<% end %>
+		</li>
+
+
+	<% end %>
+	</ul>
+</div>
+<br />
+
+<%= link_to 'New Offer', new_product_path, "data-role" => "button", "data-icon" => "plus" %>

@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
   
+  before_filter :check_authorisation
   respond_to :html, :json
   
   # GET /members
@@ -43,12 +44,20 @@ class MembersController < ApplicationController
   # POST /members
   # POST /members.json
   def create
-    @member = Member.new(params[:member])
+    Rails.logger.info(">>>Member Controller>>CREATE: #{params.inspect}, #{request.format}")
+    if request.format == :json
+      @member = Member.new(params[:member])
+    else
+      @member = Member.new(params[:memberandprod][:member])
+    end
 
     respond_with do |format|
       if @member.save
         reg_id = url_for member_registers_path(@member)
         Rails.logger.info(">>>Member Controller>>CREATE: #{@member.inspect}")
+        
+        @member.modify_products(params[:memberandprod][:products]) if params[:memberandprod]
+                
         format.html { redirect_to @member, notice: "For Registration use: #{reg_id}." }
         format.json { render :jsonify => @member, :status => :created, :location => member_path(@member) }
       else
@@ -62,9 +71,13 @@ class MembersController < ApplicationController
   # PUT /members/1.json
   def update
     @member = Member.find(params[:id])
+    Rails.logger.info(">>>Member Controller>>UPDATE: #{params.inspect}")
 
     respond_with do |format|
-      if @member.update_attributes(params[:member])
+      if @member.update_attributes(params[:memberandprod][:member])
+        
+        @member.modify_products(params[:memberandprod][:products])
+        
         format.html { redirect_to @member, notice: 'Member was successfully updated.' }
         format.json { head :ok }
       else
@@ -86,15 +99,12 @@ class MembersController < ApplicationController
     end
   end
   
-  # member resources
-  
-  def delete_all
+  private
     
-    respond_with do |format|
-      format.html {redirect_to members_url}
-    end
-    
-  end
-  
-  
+  def check_authorisation
+     # exception handling based on user authorisation
+     raise Exceptions::NotAuthorized if current_user.nil?
+     raise Exceptions::NotAuthorized unless current_user.name == "admin"
+   end
+
 end

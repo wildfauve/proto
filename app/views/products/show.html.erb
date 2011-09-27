@@ -1,0 +1,18 @@
+<% title "Offer Details" %>
+
+<div data-role="content">
+	<p>
+		<b>Name:</b>
+		<%= @product.name %>
+	</p>
+
+	<p>
+		<b>Description:</b>
+		<%= @product.desc %>
+	</p>
+
+
+</div>
+
+<%= link_to 'Edit Offer', edit_product_path(@product), "data-role" => "button", "data-icon" => "gear" %>
+<%= link_to 'Offer List', products_path, "data-role" => "button", "data-icon" => "back" %>

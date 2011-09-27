@@ -1,13 +1,7 @@
-<div data-role="header">
-	<h1>Member Details</h1>
-</div>
+<% title "Member Details" %>
 
 <div data-role="content">
-	<p>
-		<b>Name:</b>
-		<%= @member.name %>
-	</p>
-
+	<h3>Name: <%= @member.name %></h3>
 	<p>
 		<b>Card:</b>
 		<%= @member.card_num %>
@@ -17,8 +11,13 @@
 		<% if @member.registered? %>
 			<b>Registered: <%= @member.reg_date %></b>
 		<% end %>
+		
 	</p>
-
+	
+	<h3>Offers Selected</h3>
+	<% for product in @member.products do %>
+		<p><%= product.name %></p>
+	<% end %>
 </div>
 
 <%= link_to 'Edit', edit_member_path(@member), "data-role" => "button", "data-icon" => "gear" %>

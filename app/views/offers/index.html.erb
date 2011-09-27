@@ -1,0 +1,15 @@
+<% title "Member Offers" %>
+
+<div data-role="content">
+	<h3>Name: <%= @member.name %></h3>
+	<p>
+		<b>Card:</b>
+		<%= @member.card_num %>
+	</p>
+
+	
+	<h3>Offers Selected</h3>
+	<% for product in @member.products do %>
+		<p><%= product.name %></p>
+	<% end %>
+</div>

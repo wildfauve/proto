@@ -3,6 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.css" />
+
 	<%= stylesheet_link_tag    "application" %>
 	<%= javascript_include_tag "application" %>
 	<script src="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.js"></script>
@@ -10,10 +11,20 @@
 </head>
 <body>
 	<div data-role="page">
-		<%- flash.each do |name, msg| -%>
-			<%= content_tag :div, msg, :id => "flash_#{name}" %>
-		<% end %>      
-		
+		<div id="user_nav", data-role="header">
+			<h1><%= content_for?(:title) ? content_for(:title) : 'No Title' %></h1>  
+			<% if current_user %>  
+				Logged in as <%= current_user.name %>  
+				<%= link_to "Log out", log_out_path, :class => "ui-btn-right" %>  
+			<% else %>  
+				<%= link_to "Log in", log_in_path, :class => "ui-btn-right" %>  
+			<% end %>  
+			<%- flash.each do |name, msg| -%>
+				<%= content_tag :div, msg, :id => "flash_#{name}" %>
+			<% end %>      
+		</div>
+
+
 		<%= yield %>
 	</div>
 </body>
