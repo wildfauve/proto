@@ -1,7 +1,7 @@
-<% title "New Offer" %>
+<% title "Products Offer" %>
 
 <div data-role="content">
-	<%= form_for @product, :html => { :multipart => true, "data-ajax" => "false" } do |f| %>
+	<%= form_for admin_product_path(@product), :html => { :multipart => true, "data-ajax" => "false" } do |f| %>
 	  <% if @product.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -23,6 +23,11 @@
 	  </div>
 
 	  <div class="field">
+	    <%= f.label :long_desc %><br />
+	    <%= f.text_field :long_desc %>
+	  </div>
+
+	  <div class="field">
 	    <%= f.label :image %><br />
 	    <%= f.file_field :image %>
 	  </div>
@@ -34,4 +39,4 @@
 	<% end %>
 </div>
 
-<%= link_to 'Offer List', products_path, "data-role" => "button", "data-icon" => "back" %>
+<%= link_to 'Product List', admin_products_path, "data-role" => "button", "data-icon" => "back" %>

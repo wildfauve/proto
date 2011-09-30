@@ -7,9 +7,9 @@
 		<%= @member.card_num %>
 	</p>
 
+	<ul data-role  = "listview">
+		<%= render :partial => "product", :collection => @products %>
+	</ul>
 	
-	<h3>Offers Selected</h3>
-	<% for product in @member.products do %>
-		<p><%= product.name %></p>
-	<% end %>
+	
 </div>

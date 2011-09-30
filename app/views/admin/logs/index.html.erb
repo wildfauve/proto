@@ -1,0 +1,16 @@
+<% title "Logs" %>
+
+<div data-role = "content">
+	<ul data-role  = "listview">
+		<% for log in @logs do %>
+			<li>
+				<h3><%=log.time%></h3>
+				<p><%= log.card_num %></p>
+				<p><%= log.entry[:action] %></p>
+				<p><%= log.entry[:type] %></p>
+			</li>
+		<% end %>
+	</ul>
+</div>
+
+

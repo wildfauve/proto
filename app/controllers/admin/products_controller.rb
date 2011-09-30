@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class Admin::ProductsController < ApplicationController
   
     respond_to :html, :json
 
@@ -38,19 +38,19 @@ class ProductsController < ApplicationController
     # GET /products/1/edit
     def edit
       @product = Product.find(params[:id])
+      Rails.logger.info(">>>product Controller>>EDIT: #{@product.inspect}")
     end
 
     # POST /products
     # POST /products.json
     def create
-      Rails.logger.info(">>>product Controller>>CREATE: #{params
-      .inspect}")
+      Rails.logger.info(">>>product Controller>>CREATE: #{params.inspect}")
       @product = Product.new(params[:product])
 
       respond_with do |format|
         if @product.save
           Rails.logger.info(">>>product Controller>>CREATE: #{@product.inspect}")
-          format.html { redirect_to @product, notice: "Product Created" }
+          format.html { redirect_to admin_product(@product), notice: "Product Created" }
           #format.json { render :jsonify => @product, :status => :created, :location => product_path(@product) }
         else
           format.html { render action: "new" }
@@ -63,10 +63,10 @@ class ProductsController < ApplicationController
     # PUT /products/1.json
     def update
       @product = Product.find(params[:id])
-
+      Rails.logger.info(">>>product Controller>>UPDATE: #{@product.inspect}")
       respond_with do |format|
         if @product.update_attributes(params[:product])
-          format.html { redirect_to @product, notice: 'product was successfully updated.' }
+          format.html { redirect_to admin_product(@product), notice: 'product was successfully updated.' }
           format.json { head :ok }
         else
           format.html { render action: "edit" }
@@ -82,7 +82,7 @@ class ProductsController < ApplicationController
       @product.destroy
 
       respond_with do |format|
-        format.html { redirect_to products_url }
+        format.html { redirect_to admin_products_url }
         format.json { head :ok }
       end
     end

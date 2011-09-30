@@ -1,25 +1,23 @@
 <% title "Member Details" %>
 
 <div data-role="content">
-	<h3>Name: <%= @member.name %></h3>
+	<h3>Hi: <%= @member.name %></h3>
 	<p>
-		<b>Card:</b>
+		<b>Your Card Number is:</b>
 		<%= @member.card_num %>
 	</p>
 
 	<p>
 		<% if @member.registered? %>
-			<b>Registered: <%= @member.reg_date %></b>
-		<% end %>
-		
+			<b>You registered on this date: <%= @member.reg_date %></b>
+			<%= link_to 'Remove Registration', member_registers_path(@member), "data-role" => "button", "data-icon" => "star"%>
+		<% else %>
+			<%= link_to 'Remove Registration', member_registers_path(@member), "data-role" => "button", "data-icon" => "star"%>
+		<% end %>		
+	</p>
+	<p>
+		<%= link_to 'Check out your Offers', member_offers_path(@member), "data-role" => "button", "data-icon" => "star"%>
 	</p>
 	
-	<h3>Offers Selected</h3>
-	<% for product in @member.products do %>
-		<p><%= product.name %></p>
-	<% end %>
 </div>
 
-<%= link_to 'Edit', edit_member_path(@member), "data-role" => "button", "data-icon" => "gear" %>
-<%= link_to 'Back', members_path, "data-role" => "button", "data-icon" => "back" %>
-<%= link_to 'Register', member_registers_path(@member), "data-role" => "button", "data-icon" => "star"%>

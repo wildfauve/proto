@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   private  
+    
+    def check_authorisation
+       # exception handling based on user authorisation
+       raise Exceptions::NotAuthorized if current_user.nil?
+       raise Exceptions::NotAuthorized unless current_user.name == "admin"
+     end
+    
   
     def user_not_authorized
         flash[:error] = "You don't have access."

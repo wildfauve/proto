@@ -19,7 +19,7 @@ end
 gem 'jsonify-rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'carrierwave'
-gem "rmagick"
+gem 'mini_magick'
 
 gem 'jquery-rails'
 

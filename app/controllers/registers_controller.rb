@@ -12,12 +12,12 @@ class RegistersController < ApplicationController
     end
   end
 
-  # GET /members/1/register
+  # POST /members/1/registers
   def create
     @member = Member.find(params[:member_id])
     respond_with do |format|
-      if @member.update_attributes(:registered => true, :reg_date => Time.now)
-        format.html { redirect_to member_register_path(@member.id, 1), notice: 'Member was successfully updated.' }
+      if @member.update_attributes(:registered => true)
+        format.html { redirect_to member_register_path(@member.id, 1) }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -33,12 +33,12 @@ class RegistersController < ApplicationController
   def new
   end
   
-  # DELETE /members/1/register
+  # DELETE /members/1/registers
   def destroy
     @member = Member.find(params[:member_id])
     respond_with do |format|
       if @member.update_attributes(:registered => false, :reg_date => nil)
-        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
+        format.html { redirect_to member_register_path(@member.id, 1) }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
