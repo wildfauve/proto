@@ -50,7 +50,7 @@ class Admin::ProductsController < ApplicationController
       respond_with do |format|
         if @product.save
           Rails.logger.info(">>>product Controller>>CREATE: #{@product.inspect}")
-          format.html { redirect_to admin_product(@product), notice: "Product Created" }
+          format.html { redirect_to admin_product_path(@product), notice: "Product Created" }
           #format.json { render :jsonify => @product, :status => :created, :location => product_path(@product) }
         else
           format.html { render action: "new" }
@@ -66,7 +66,7 @@ class Admin::ProductsController < ApplicationController
       Rails.logger.info(">>>product Controller>>UPDATE: #{@product.inspect}")
       respond_with do |format|
         if @product.update_attributes(params[:product])
-          format.html { redirect_to admin_product(@product), notice: 'product was successfully updated.' }
+          format.html { redirect_to admin_product_path(@product), notice: 'product was successfully updated.' }
           format.json { head :ok }
         else
           format.html { render action: "edit" }
