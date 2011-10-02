@@ -1,5 +1,6 @@
 class Admin::ProductsController < ApplicationController
-  
+    
+    before_filter :check_authorisation  
     respond_to :html, :json
 
     # GET /products
